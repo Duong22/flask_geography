@@ -2,7 +2,7 @@ import os
 from flask import Flask
 
 # blueprint import
-from src.geocoder import geocoder
+from src.route import geocoder
 
 def create_app():
     app = Flask(__name__)
@@ -14,5 +14,5 @@ def create_app():
     return app
 
 
-if __name__ == "__main__":
-    create_app().run()
+# if __name__ == "__main__":
+#     create_app().run()

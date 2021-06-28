@@ -1,4 +1,3 @@
-from flask import Blueprint 
 from decimal import Decimal
 from typing import Tuple
 import requests
@@ -7,8 +6,6 @@ import json
 from math import sin, cos, sqrt, atan2, radians
 
 # from .exceptions import InvalidKey, NothingFound, UnexpectedResponse
-
-API_KEY = "8507fcb7-4e42-4537-80ed-3b77efa71f95"
 
 class YandexGeocoder(object):
     def __init__(self, api_key):
@@ -69,25 +66,3 @@ class YandexGeocoder(object):
 
         distance = R * c
         return distance
-
-yandex_geocoder = YandexGeocoder(API_KEY)
-
-geocoder = Blueprint('geocoder', __name__)
-
-@geocoder.route("/findaddress")
-def find_address():
-    address = yandex_geocoder.find_address(Decimal("37.587093"), Decimal("55.733969"))
-    print(address)
-    return json.dumps({"address": address})
-
-@geocoder.route("/findcoordinates")
-def find_coordinates():
-    coordinates = yandex_geocoder.find_coordinates("new york")
-    print(coordinates)
-    return str(coordinates)
-
-@geocoder.route("/finddistance")
-def find_distance():
-    distance = yandex_geocoder.calculate_distance(address="New york")
-    print(distance)
-    return str(distance)
